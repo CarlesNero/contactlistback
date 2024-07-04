@@ -24,19 +24,19 @@ public class ContactlistApplication {
 		SpringApplication.run(ContactlistApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(){
-		return args -> {
-            List<Contact> contacts = Arrays.asList(
-                    new Contact("Carlos", "carlos@gmail.com", "123456789", LocalDateTime.now()),
-                    new Contact("Pepe", "Pepe@gmail.com", "987654321", LocalDateTime.now()),
-                    new Contact("Laia", "Laia@gmail.com", "123789456", LocalDateTime.now()),
-                    new Contact("Juan", "Juan@gmail.com", "456789123", LocalDateTime.now()),
-                    new Contact("María", "María@gmail.com", "321456987", LocalDateTime.now())
-            );
-            contactRepository.saveAll(contacts);
-        };
+//	@Bean
+//	CommandLineRunner runner(){
+//		return args -> {
+//            List<Contact> contacts = Arrays.asList(
+//                    new Contact("Carlos", "carlos@gmail.com", "123456789", LocalDateTime.now()),
+//                    new Contact("Pepe", "Pepe@gmail.com", "987654321", LocalDateTime.now()),
+//                    new Contact("Laia", "Laia@gmail.com", "123789456", LocalDateTime.now()),
+//                    new Contact("Juan", "Juan@gmail.com", "456789123", LocalDateTime.now()),
+//                    new Contact("María", "María@gmail.com", "321456987", LocalDateTime.now())
+//            );
+//            contactRepository.saveAll(contacts);
+//        };
 
 
-	}
+//	}
 }

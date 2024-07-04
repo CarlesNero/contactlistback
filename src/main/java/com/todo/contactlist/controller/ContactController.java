@@ -1,15 +1,14 @@
 package com.todo.contactlist.controller;
 
 import com.todo.contactlist.entity.Contact;
-import com.todo.contactlist.repository.ContactRepository;
 import com.todo.contactlist.service.ContactService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+@CrossOrigin
 @AllArgsConstructor
 @RequestMapping("/api/contacts")
 @RestController
@@ -31,7 +30,6 @@ public class ContactController {
     @PostMapping
     public Contact create(@RequestBody Contact contact){
         contact.setCreatedAt(LocalDateTime.now());
-        contact.setPhone("número no disponible");
         return contactService.create(contact);
     }
 

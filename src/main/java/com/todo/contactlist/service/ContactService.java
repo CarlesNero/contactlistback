@@ -3,7 +3,6 @@ package com.todo.contactlist.service;
 import com.todo.contactlist.entity.Contact;
 import com.todo.contactlist.repository.ContactRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -28,7 +27,6 @@ public class ContactService {
 
     public Contact create(Contact contact) {
         contact.setCreatedAt(LocalDateTime.now());
-        contact.setPhone("número no disponible");
         return contactRepository.save(contact);
     }
 
