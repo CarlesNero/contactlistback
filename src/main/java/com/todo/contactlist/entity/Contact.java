@@ -1,12 +1,11 @@
 package com.todo.contactlist.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @Entity
@@ -14,16 +13,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Contact {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "KJWGDHKEJW")
+    @SequenceGenerator(sequenceName = "CONTANCT_SEQ", name = "KJWGDHKEJW", allocationSize = 1)
     private Integer id;
-    @NonNull
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
     @NonNull
     private String email;
     @NonNull
     private String phone;
     @NonNull
-    private LocalDateTime createdAt;
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
 
 
 }
