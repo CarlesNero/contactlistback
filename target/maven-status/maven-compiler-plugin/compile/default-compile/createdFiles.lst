@@ -1,0 +1,5 @@
+com\todo\contactlist\service\ContactService.class
+com\todo\contactlist\ContactlistApplication.class
+com\todo\contactlist\entity\Contact.class
+com\todo\contactlist\repository\ContactRepository.class
+com\todo\contactlist\controller\ContactController.class
