@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.todo.contactlist.ContactlistApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.34 s -- in com.todo.contactlist.ContactlistApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.72 s -- in com.todo.contactlist.ContactlistApplicationTests
