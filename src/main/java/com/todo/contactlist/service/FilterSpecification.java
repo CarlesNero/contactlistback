@@ -40,7 +40,7 @@ public class FilterSpecification<T> {
                       Predicate like =  criteriaBuilder.equal(root.get(requestDto.getColumn()), "%" + requestDto.getValue() + "%");
                       predicates.add(like);
                       break;
-                  default: throw new IllegalStateException("Unexpected value: " + "");
+                  default: throw new IllegalStateException("Unexpected value: " + " ");
               }
           }
           if(globalOperator.equals(RequestDto.GlobalOperator.AND)) {
