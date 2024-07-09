@@ -1,5 +1,6 @@
 package com.todo.contactlist.service;
 
+import com.todo.contactlist.entity.Book;
 import com.todo.contactlist.entity.Contact;
 import com.todo.contactlist.repository.ContactRepository;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class ContactService {
 
 
 
-    public Iterable<Contact> listWithPage(@PageableDefault(size = 5, page = 0, direction = Sort.Direction.ASC, sort = "id") Pageable pageable, int pageNum) {
+    public Iterable<Contact> listWithPage( Pageable pageable, int pageNum) {
         return contactRepository.findAll(pageable.withPage(pageNum));
     }
 
@@ -42,6 +43,7 @@ public class ContactService {
 
     public Contact create(Contact contact) {
         contact.setCreatedAt(Time.from(Instant.now()));
+
         return contactRepository.save(contact);
     }
 
@@ -51,6 +53,8 @@ public class ContactService {
         contactDb.setName(form.getName());
         contactDb.setPhone(form.getPhone());
         contactDb.setEmail(form.getEmail());
+        contactDb.setBookId(form.getBookId());
+
 
         return contactRepository.save(contactDb);
     }

@@ -1,12 +1,16 @@
 package com.todo.contactlist;
 
+import com.todo.contactlist.entity.Book;
 import com.todo.contactlist.entity.Contact;
 import com.todo.contactlist.repository.ContactRepository;
+import com.todo.contactlist.repository.BookRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +19,11 @@ import java.util.List;
 public class ContactlistApplication {
 
 	private final ContactRepository contactRepository;
+	private final BookRepository bookRepository;
 
-	public ContactlistApplication(ContactRepository contactRepository) {
+	public ContactlistApplication(ContactRepository contactRepository, BookRepository bookRepository) {
 		this.contactRepository = contactRepository;
+		this.bookRepository = bookRepository;
 	}
 
 	public static void main(String[] args) {
@@ -25,18 +31,15 @@ public class ContactlistApplication {
 	}
 
 //	@Bean
-//	CommandLineRunner runner(){
+//	CommandLineRunner bookRunner() {
 //		return args -> {
-//            List<Contact> contacts = Arrays.asList(
-//                    new Contact("Carlos", "carlos@gmail.com", "123456789", LocalDateTime.now()),
-//                    new Contact("Pepe", "Pepe@gmail.com", "987654321", LocalDateTime.now()),
-//                    new Contact("Laia", "Laia@gmail.com", "123789456", LocalDateTime.now()),
-//                    new Contact("Juan", "Juan@gmail.com", "456789123", LocalDateTime.now()),
-//                    new Contact("María", "María@gmail.com", "321456987", LocalDateTime.now())
-//            );
-//            contactRepository.saveAll(contacts);
-//        };
-
-
+//			List<Book> books = Arrays.asList(
+//					new Book("titulo1", "autor1", "editorial1", "ISBN0001", 1),
+//					new Book("titulo2", "autor2", "editorial2", "ISBN0002", 2)
+//			);
+//			bookRepository.saveAll(books);
+//		};
 //	}
+
+
 }
