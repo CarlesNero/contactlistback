@@ -24,11 +24,11 @@ public class FilterSpecification<T> {
         };
     }
 
-    public Specification<T> getSearchSpecification(List<SearchRequestDto> searchRequestDtoList,
+    public Specification<T> getSearchSpecification(List<SearchRequestDto> searchRequestDtos,
                                                    RequestDto.GlobalOperator globalOperator) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-          for(SearchRequestDto requestDto : searchRequestDtoList) {
+          for(SearchRequestDto requestDto : searchRequestDtos) {
 
 
               switch (requestDto.getOperation()){
@@ -37,16 +37,39 @@ public class FilterSpecification<T> {
                       predicates.add(equal);
                       break;
                   case LIKE:
-                      Predicate like =  criteriaBuilder.equal(root.get(requestDto.getColumn()), "%" + requestDto.getValue() + "%");
+                      Predicate like = criteriaBuilder.like(root.get(requestDto.getColumn()), "%" + requestDto.getValue() + "%");
                       predicates.add(like);
                       break;
-                  default: throw new IllegalStateException("Unexpected value: " + " ");
+                  case IN:
+                      String[] split = requestDto.getValue().split(",");
+                      Predicate in = root.get(requestDto.getColumn()).in(split);
+                      predicates.add(in);
+                      break;
+                  case LESS_THAN:
+                      Predicate lessThan = criteriaBuilder.lessThan(root.get(requestDto.getColumn()), requestDto.getValue());
+                      predicates.add(lessThan);
+                        break;
+                  case GREATER_THAN:
+                      Predicate greaterThan = criteriaBuilder.greaterThan(root.get(requestDto.getColumn()), requestDto.getValue());
+                      predicates.add(greaterThan);
+                      break;
+                  case BETWEEN:
+                      String[] split1 = requestDto.getValue().split(",");
+                      Predicate between = criteriaBuilder.between(root.get(requestDto.getColumn()),Long.parseLong(split1[0]),Long.parseLong(split1[1]));
+                      predicates.add(between);
+                      break;
+                  case JOIN:
+                      Predicate join = criteriaBuilder.equal(root.join(requestDto.getJoinTable()).get(requestDto.getColumn()), requestDto.getValue());
+                      predicates.add(join);
+                      break;
+                  default:
+                      throw new IllegalStateException("Unexpected value: " + "");
               }
           }
           if(globalOperator.equals(RequestDto.GlobalOperator.AND)) {
-          return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+          return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
           }else{
-              return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
+              return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
           }
         };
     }
